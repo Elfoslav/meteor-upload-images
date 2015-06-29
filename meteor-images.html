@@ -1,0 +1,32 @@
+<head>
+  <title>meteor-images</title>
+</head>
+
+<body>
+  <h1>Welcome to Meteor upload images!</h1>
+
+  {{> hello}}
+</body>
+
+<template name="hello">
+  <form>
+    <input type="file" name="image" />
+  </form>
+  <br/>
+  {{#each uploads}}
+    <p>
+      {{#if isImage}}
+        <a href="{{url}}">
+          <img src="{{url}}" alt="{{original.name}}" />
+        </a>
+      {{else}}
+        {{original.name}}
+        <a href="{{url download=true}}">
+          Download
+        </a>
+      {{/if}}
+      <br/>
+      {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+    </p>
+  {{/each}}
+</template>
